@@ -1,7 +1,15 @@
-import { AppBar, Box, Toolbar, Typography, Button, Paper } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  Typography,
+  Button,
+  Paper,
+  TextField,
+} from "@mui/material";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import Input from "./Input";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -11,15 +19,67 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function Plans() {
-  const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [depth, setDepth] = useState(null);
-  const [pressure, setPressure] = useState(null);
-  const [bullshit, setBullshit] = useState(null);
+  const [formValues, setFormValues] = useState([]);
+  const depthRef = useRef();
+  const pressureRef = useRef();
+  const hardnessRef = useRef();
+  var allRefs = [depthRef, pressureRef, hardnessRef];
 
+  const sendValue = () => {
+    allRefs = [depthRef, pressureRef, hardnessRef];
+    const refVals = allRefs.map((ref) => ref.current.value);
+    setFormValues(refVals);
+    console.log(formValues);
+  };
+  const sendValueFR = () => {
+    sendValue();
+    sendValue();
+  };
   const input = (
     <Item elevation={69}>
-      <Input />
+      <form noValidate autoComplete="off">
+        <Box sx={{ flexGrow: 1 }}>
+          <Typography> Enter your information here! </Typography>
+          <div className="inputField">
+            <TextField
+              id="outlined-basic"
+              label="Depth"
+              variant="outlined"
+              inputRef={(depthRef) =>
+                typeof depthRef !== "undefined"
+                  ? (this.depthRef = depthRef)
+                  : null
+              }
+            />
+          </div>
+          <div className="inputField">
+            <TextField
+              id="outlined-basic"
+              label="Pressure"
+              variant="outlined"
+              inputRef={(pressureRef) =>
+                typeof pressureRef !== "undefined"
+                  ? (this.pressureRef = pressureRef)
+                  : null
+              }
+            />
+          </div>
+          <div className="inputField">
+            <TextField
+              id="outlined-basic"
+              label="Hardness"
+              variant="outlined"
+              inputRef={(hardnessRef) =>
+                typeof hardnessRef !== "undefined"
+                  ? (this.hardnessRef = hardnessRef)
+                  : null
+              }
+            />
+          </div>
+        </Box>
+        <Button onClick={sendValueFR}> Submit </Button>
+      </form>
     </Item>
   );
 
