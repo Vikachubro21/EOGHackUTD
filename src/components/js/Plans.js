@@ -55,7 +55,7 @@ function Plans() {
           <div className="inputField">
             <TextField
               id="outlined-basic"
-              label="Depth"
+              label="Maximum Depth"
               error={!isNumeric(depthRef)}
               variant="outlined"
               inputRef={depthRef}
@@ -64,7 +64,7 @@ function Plans() {
           <div className="inputField">
             <TextField
               id="outlined-basic"
-              label="Pressure"
+              label="Differential Pressure"
               error={!isNumeric(pressureRef)}
               variant="outlined"
               inputRef={pressureRef}

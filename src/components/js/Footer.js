@@ -11,12 +11,21 @@ import logo from "../images/EOG_Resources_logo.svg";
 // NOTE TO SELF Make the buttons contain typography
 function Footer() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Typography color="white">
-        {" "}
-        UI designed by Vikas Thoutam and Logan Cheng
-      </Typography>
-      <Typography color="white"> Copyright 2023 </Typography>
+    <Box
+      sx={{
+        height: "100px",
+        width: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div>
+        <Typography color="white" sx={{}}>
+          UI designed by Vikas Thoutam and Logan Cheng
+        </Typography>
+        <Typography color="white"> © Copyright 2023 </Typography>
+      </div>
     </Box>
   );
 }

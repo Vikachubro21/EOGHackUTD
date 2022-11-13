@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import logo from "../images/newplot_13.png";
+import Plot from "react-plotly.js";
 // NOTE TO SELF Make the buttons contain typography
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -36,29 +37,49 @@ const theme = createTheme({
 function Analysis() {
   return (
     <div>
-      <Typography color="white">Graphs</Typography>
+      <Typography color="white">Drill Info</Typography>
+
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <div>
             <Item>
-              <div>Buzz Drilldrin</div>
-              <Box
-                component="img"
-                sx={{ height: "500px", width: "90%" }}
-                src={logo}
-                alt="bruh"
-              ></Box>
+              <div>
+                <Typography color="white">Buzz Drilldrin</Typography>
+                <Plot
+                  data={[
+                    {
+                      x: [1, 2, 3],
+                      y: [2, 6, 3],
+                      type: "scatter",
+                      mode: "lines+markers",
+                      marker: { color: "red" },
+                    },
+                    { type: "bar", x: [1, 2, 3], y: [2, 5, 3] },
+                  ]}
+                  layout={{
+                    width: "90%",
+                    height: "500px",
+                    title: "A Fancy Plot",
+                  }}
+                />
+              </div>
             </Item>
           </div>
         </Grid>
         <Grid item xs={6}>
-          <Item>Astro Bit</Item>
+          <Item>
+            <Typography color="white">Astro Bit</Typography>
+          </Item>
         </Grid>
         <Grid item xs={6}>
-          <Item>Apollo</Item>
+          <Item>
+            <Typography color="white">Apollo</Typography>
+          </Item>
         </Grid>
         <Grid item xs={6}>
-          <Item>ChallengDriller</Item>
+          <Item>
+            <Typography color="white">ChallengDriller</Typography>
+          </Item>
         </Grid>
       </Grid>
     </div>
