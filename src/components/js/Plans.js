@@ -7,10 +7,9 @@ import {
   Paper,
   TextField,
 } from "@mui/material";
-import Analysis from "./Analysis";
-import Cheapest from "./Cheapest";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import Input from "./Input";
+import Cheapest from "./Cheapest";
 import { useState, useRef } from "react";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -22,7 +21,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function Plans() {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [formValues, setFormValues] = useState(["a", "b", "c"]);
+  const [formValues, setFormValues] = useState([]);
   const depthRef = useRef();
   const pressureRef = useRef();
   const hardnessRef = useRef();
@@ -38,16 +37,15 @@ function Plans() {
       !isNaN(parseFloat(str.current.value))
     ); // ...and ensure strings of whitespace fail
   }
-  const sendValue = async () => {
+  const sendValue = () => {
     allRefs = [depthRef, pressureRef, hardnessRef];
     allCorrect = allRefs.map((value) => isNumeric(value));
     console.log(allCorrect);
     const refVals = allRefs.map((ref) => ref.current.value);
-    await setFormValues(refVals);
+    setFormValues(refVals);
     var isSubbed = true;
     allCorrect.forEach((a) => (isSubbed = isSubbed && a));
-    await setIsSubmitted(isSubbed);
-    return true;
+    setIsSubmitted(isSubbed);
   };
 
   const input = (
@@ -87,36 +85,16 @@ function Plans() {
       </form>
     </Item>
   );
-  const [isShown, setIsShown] = useState(true);
-  console.log(formValues);
-  const page = isShown ? (
-    <Analysis />
-  ) : (
-    <Cheapest
-      depth={formValues[0]}
-      pressure={formValues[1]}
-      load={formValues[2]}
-    />
-  );
+
   const plans = (
     <Item elevation={75}>
-      <Button
-        variant="text"
-        size="large"
-        className="Button"
-        onClick={() => setIsShown(false)}
-      >
-        Cheapest
+      <Button variant="text" size="large" className="Button">
+        Fastest
       </Button>
-      <Button
-        variant="text"
-        size="large"
-        className="Button"
-        onClick={() => setIsShown(true)}
-      >
-        <Typography>Fastest</Typography>
+      <Button variant="text" size="large" className="Button">
+        <Typography>Cheapest</Typography>
       </Button>
-      {page}
+      <Cheapest />
     </Item>
   );
 
