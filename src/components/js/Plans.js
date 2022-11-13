@@ -7,6 +7,8 @@ import {
   Paper,
   TextField,
 } from "@mui/material";
+import Analysis from "./Analysis";
+import Cheapest from "./Cheapest";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import Input from "./Input";
 import { useState, useRef } from "react";
@@ -20,7 +22,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function Plans() {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [formValues, setFormValues] = useState([]);
+  const [formValues, setFormValues] = useState(["a", "b", "c"]);
   const depthRef = useRef();
   const pressureRef = useRef();
   const hardnessRef = useRef();
@@ -36,15 +38,16 @@ function Plans() {
       !isNaN(parseFloat(str.current.value))
     ); // ...and ensure strings of whitespace fail
   }
-  const sendValue = () => {
+  const sendValue = async () => {
     allRefs = [depthRef, pressureRef, hardnessRef];
     allCorrect = allRefs.map((value) => isNumeric(value));
     console.log(allCorrect);
     const refVals = allRefs.map((ref) => ref.current.value);
-    setFormValues(refVals);
+    await setFormValues(refVals);
     var isSubbed = true;
     allCorrect.forEach((a) => (isSubbed = isSubbed && a));
-    setIsSubmitted(isSubbed);
+    await setIsSubmitted(isSubbed);
+    return true;
   };
 
   const input = (
@@ -84,15 +87,36 @@ function Plans() {
       </form>
     </Item>
   );
-
+  const [isShown, setIsShown] = useState(true);
+  console.log(formValues);
+  const page = isShown ? (
+    <Analysis />
+  ) : (
+    <Cheapest
+      depth={formValues[0]}
+      pressure={formValues[1]}
+      load={formValues[2]}
+    />
+  );
   const plans = (
     <Item elevation={75}>
-      <Button variant="text" size="large" className="Button">
-        Fastest
+      <Button
+        variant="text"
+        size="large"
+        className="Button"
+        onClick={() => setIsShown(false)}
+      >
+        Cheapest
       </Button>
-      <Button variant="text" size="large" className="Button">
-        <Typography>Cheapest</Typography>
+      <Button
+        variant="text"
+        size="large"
+        className="Button"
+        onClick={() => setIsShown(true)}
+      >
+        <Typography>Fastest</Typography>
       </Button>
+      {page}
     </Item>
   );
 
