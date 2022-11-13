@@ -4,7 +4,9 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Header from "./components/js/Header";
 import Plans from "./components/js/Plans";
 import Footer from "./components/js/Footer";
+import Analysis from "./components/js/Analysis";
 import "./App.css";
+import { useState, useRef } from "react";
 
 function App() {
   const theme = createTheme({
@@ -25,6 +27,8 @@ function App() {
       },
     },
   });
+  const [isShown, setIsShown] = useState(false);
+  const page = isShown ? <Plans /> : <Analysis />;
   return (
     <div
       className="App"
@@ -33,8 +37,8 @@ function App() {
       }}
     >
       <ThemeProvider theme={theme}>
-        <Header />
-        <Plans />
+        <Header setIsShown={(bool) => setIsShown(bool)} />
+        {page}
         <Footer />
       </ThemeProvider>
     </div>

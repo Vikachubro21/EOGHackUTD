@@ -9,7 +9,15 @@ import {
 } from "@mui/material";
 import logo from "../images/EOG_Resources_logo.svg";
 // NOTE TO SELF Make the buttons contain typography
-function Header() {
+function Header({ setIsShown }) {
+  const analysis = () => {
+    setIsShown(false);
+    console.log("Loading anal");
+  };
+  const plans = () => {
+    setIsShown(true);
+    console.log("Loading Plan");
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -20,10 +28,15 @@ function Header() {
             src={logo}
             alt="bruh"
           ></Box>
-          <Button variant="text" size="large" className="Button">
+          <Button
+            variant="text"
+            size="large"
+            className="Button"
+            onClick={analysis}
+          >
             Analysis
           </Button>
-          <Button variant="text" size="large">
+          <Button variant="text" size="large" onClick={plans}>
             Plans
           </Button>
         </Toolbar>

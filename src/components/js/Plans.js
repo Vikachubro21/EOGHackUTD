@@ -25,19 +25,30 @@ function Plans() {
   const pressureRef = useRef();
   const hardnessRef = useRef();
   var allRefs = [depthRef, pressureRef, hardnessRef];
+  var allCorrect = [true, true, true];
 
+  function isNumeric(str) {
+    if (typeof str !== "object") return false; // we only process strings!
+    if (typeof str.current !== "object") return true;
+    //if (typeof str.current.values === "undefined") return false;
+    return (
+      !isNaN(str.current.value) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+      !isNaN(parseFloat(str.current.value))
+    ); // ...and ensure strings of whitespace fail
+  }
   const sendValue = () => {
     allRefs = [depthRef, pressureRef, hardnessRef];
+    allCorrect = allRefs.map((value) => isNumeric(value));
+    console.log(allCorrect);
     const refVals = allRefs.map((ref) => ref.current.value);
     setFormValues(refVals);
-    console.log(formValues);
+    var isSubbed = true;
+    allCorrect.forEach((a) => (isSubbed = isSubbed && a));
+    setIsSubmitted(isSubbed);
   };
-  const sendValueFR = () => {
-    sendValue();
-    sendValue();
-  };
+
   const input = (
-    <Item elevation={69}>
+    <Item elevation={24}>
       <form noValidate autoComplete="off">
         <Box sx={{ flexGrow: 1 }}>
           <Typography> Enter your information here! </Typography>
@@ -45,40 +56,31 @@ function Plans() {
             <TextField
               id="outlined-basic"
               label="Depth"
+              error={!isNumeric(depthRef)}
               variant="outlined"
-              inputRef={(depthRef) =>
-                typeof depthRef !== "undefined"
-                  ? (this.depthRef = depthRef)
-                  : null
-              }
+              inputRef={depthRef}
             />
           </div>
           <div className="inputField">
             <TextField
               id="outlined-basic"
               label="Pressure"
+              error={!isNumeric(pressureRef)}
               variant="outlined"
-              inputRef={(pressureRef) =>
-                typeof pressureRef !== "undefined"
-                  ? (this.pressureRef = pressureRef)
-                  : null
-              }
+              inputRef={pressureRef}
             />
           </div>
           <div className="inputField">
             <TextField
               id="outlined-basic"
               label="Hardness"
+              error={!isNumeric(hardnessRef)}
               variant="outlined"
-              inputRef={(hardnessRef) =>
-                typeof hardnessRef !== "undefined"
-                  ? (this.hardnessRef = hardnessRef)
-                  : null
-              }
+              inputRef={hardnessRef}
             />
           </div>
         </Box>
-        <Button onClick={sendValueFR}> Submit </Button>
+        <Button onClick={sendValue}> Submit </Button>
       </form>
     </Item>
   );
