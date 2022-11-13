@@ -12,6 +12,8 @@ import {
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import logo from "../images/newplot_13.png";
 import Plot from "react-plotly.js";
+import Cheapest from "./Cheapest";
+import CheapGraph from "./CheapGraph";
 // NOTE TO SELF Make the buttons contain typography
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -44,7 +46,7 @@ function Analysis() {
             <Item>
               <div>
                 <Typography color="white">Buzz Drilldrin</Typography>
-                <Plot
+                {/* <Plot
                   data={[
                     {
                       x: [1, 2, 3],
@@ -70,7 +72,8 @@ function Analysis() {
                       },
                     },
                   }}
-                />
+                /> */}
+            
                 <Typography color="white">Temp Text</Typography>
               </div>
             </Item>
@@ -79,7 +82,7 @@ function Analysis() {
         <Grid item xs={6}>
           <Item>
             <Typography color="white">Astro Bit</Typography>
-            <Plot
+            {/* <Plot
               data={[
                 {
                   x: [1, 2, 3],
@@ -105,14 +108,15 @@ function Analysis() {
                   },
                 },
               }}
-            />
+            /> */}
+           
             <Typography color="white">Temp Text</Typography>
           </Item>
         </Grid>
         <Grid item xs={6}>
           <Item>
             <Typography color="white">Apollo</Typography>
-            <Plot
+            {/* <Plot
               data={[
                 {
                   x: [1, 2, 3],
@@ -138,14 +142,15 @@ function Analysis() {
                   },
                 },
               }}
-            />
+            /> */}
+           
             <Typography color="white">Temp Text</Typography>
           </Item>
         </Grid>
         <Grid item xs={6}>
           <Item>
             <Typography color="white">ChallengDriller</Typography>
-            <Plot
+            {/* <Plot
               data={[
                 {
                   x: [1, 2, 3],
@@ -171,7 +176,8 @@ function Analysis() {
                   },
                 },
               }}
-            />
+            /> */}
+            
             <Typography color="white">Temp Text</Typography>
           </Item>
         </Grid>
