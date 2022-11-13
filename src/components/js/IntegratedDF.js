@@ -3,69 +3,6 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { values } from "@fluentui/react";
 // let depth be an array with the input
-const calculateTime = (depth, rate, dist) => {
-  const finalRate = rate[rate.length - 1];
-  var currDepth = 0;
-  var atDepth = false;
-
-  var totalTime = 0;
-
-  if (dist < depth[0]) {
-    return dist / rate[0];
-  }
-  for (let i = 0; i < depth.length; i++) {
-    if (atDepth) {
-      totalTime -= depth[i - 1] / rate[i - 1];
-      currDepth -= depth[i - 1];
-      totalTime += (dist - currDepth) / rate[i - 1];
-      return totalTime;
-    }
-    totalTime += depth[i] / rate[i];
-    currDepth += depth[i];
-    if (currDepth >= dist) {
-      atDepth = true;
-    }
-  }
-  totalTime += (dist - currDepth) / finalRate;
-  return totalTime;
-};
-const sampledBuzzPrice = (dist, sampleSize) => {
-  let margin = dist; //sampleSize
-  let i = 0;
-  let prices = [];
-  let price = 5000;
-  while (i <= dist) {
-    let temp = i * 1.5 + price;
-    prices.append(temp);
-    i += margin;
-  }
-  prices.append(dist * 1.5 + price);
-  return prices;
-};
-
-const sampledHourlyPrice = (
-  depth,
-  rate,
-  dist,
-  sampleSize,
-  hourlyRate,
-  distRate,
-  price
-) => {
-  let margin = dist; //sampleSize
-  let i = 0;
-  let prices = [];
-  while (i <= dist) {
-    let temp =
-      calculateTime(depth, rate, i) * hourlyRate + i * distRate + price;
-    prices.append(temp);
-    i += margin;
-  }
-  prices.append(
-    dist * distRate + price + calculateTime(depth, rate, dist) * hourlyRate
-  );
-  return prices;
-};
 
 function CheapGraph() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -75,7 +12,7 @@ function CheapGraph() {
   useEffect(() => {
     axios
       .get(
-        "https://raw.githubusercontent.com/Vikachubro21/EOGHackUTD/main/TimeByBitDepthDF.json"
+        "https://raw.githubusercontent.com/Vikachubro21/EOGHackUTD/main/IntegratedDF.json"
       )
       .then(
         (result) => {
@@ -97,7 +34,7 @@ function CheapGraph() {
     const colors = ["red", "blue", "green", "yellow"];
     const drillBitNames = [
       "Buzz Drilldrin",
-      "Astrobit",
+      "AstroBit",
       "Apollo",
       "ChallengDriller",
     ];
@@ -106,7 +43,7 @@ function CheapGraph() {
         x: [],
         y: [],
         type: "scatter",
-        mode: "markers",
+        mode: "lines",
         name: "Buzz Drilldrin",
         marker: { color: colors[0] },
       },
@@ -114,15 +51,15 @@ function CheapGraph() {
         x: [],
         y: [],
         type: "scatter",
-        mode: "markers",
-        name: "Astro Bit",
+        mode: "lines",
+        name: "AstroBit",
         marker: { color: colors[1] },
       },
       {
         x: [],
         y: [],
         type: "scatter",
-        mode: "markers",
+        mode: "lines",
         name: "Apollo",
         marker: { color: colors[2] },
       },
@@ -130,24 +67,24 @@ function CheapGraph() {
         x: [],
         y: [],
         type: "scatter",
-        mode: "markers",
+        mode: "lines",
         name: "ChallengDriller",
         marker: { color: colors[3] },
       },
     ];
-    for (let i = 0; i < 299169; i++) {
+    for (let i = 0; i < 1500; i++) {
       let foundIndex;
-      if (JSON["Drill Bit Name"][i] == "Buzz Drilldrin") {
+      if (JSON["Bit Drill Name"][i] == "Buzz Drilldrin") {
         foundIndex = 0;
-      } else if (JSON["Drill Bit Name"][i] == "AstroBit") {
+      } else if (JSON["Bit Drill Name"][i] == "Astro Drill") {
         foundIndex = 1;
-      } else if (JSON["Drill Bit Name"][i] == "Apollo") {
+      } else if (JSON["Bit Drill Name"][i] == "Apollo") {
         foundIndex = 2;
       } else {
         foundIndex = 3;
       }
-      datas[foundIndex].x.push(JSON["Time"][i]);
-      datas[foundIndex].y.push(JSON["Bit Depth"][i]);
+      datas[foundIndex].x.push(JSON["Bit Depth"][i]);
+      datas[foundIndex].y.push(JSON["Hours per Foot"][i]);
     }
     console.log(datas);
     return (

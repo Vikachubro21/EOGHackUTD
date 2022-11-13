@@ -10,7 +10,6 @@ import {
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import Input from "./Input";
 import Cheapest from "./Cheapest";
-import CheapGraph from "./CheapGraph";
 import Fastest from "./Fastest";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";

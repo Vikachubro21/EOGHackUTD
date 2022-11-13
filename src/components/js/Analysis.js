@@ -13,7 +13,9 @@ import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import logo from "../images/newplot_13.png";
 import Plot from "react-plotly.js";
 import Cheapest from "./Cheapest";
-import CheapGraph from "./CheapGraph";
+import IntegratedDF from "./IntegratedDF";
+import InvertedDepthByRoP from "./InvertedDepthbyROP";
+import DepthVRoPSmoothed from "./DepthVRoPSmoothed";
 // NOTE TO SELF Make the buttons contain typography
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -42,143 +44,31 @@ function Analysis() {
       <Typography color="white">Drill Info</Typography>
       <Grid container spacing={2}>
         <Grid item xs={6}>
-          <div>
-            <Item>
-              <div>
-                <Typography color="white">Buzz Drilldrin</Typography>
-                {/* <Plot
-                  data={[
-                    {
-                      x: [1, 2, 3],
-                      y: [2, 6, 3],
-                      type: "scatter",
-                      mode: "lines+markers",
-                      marker: { color: "red" },
-                    },
-                    { type: "bar", x: [1, 2, 3], y: [2, 5, 3] },
-                  ]}
-                  layout={{
-                    width: "90%",
-                    height: "500px",
-                    title: "A Fancy Plot",
-                    paper_bgcolor: "#2B2B2B",
-                    plot_bgcolor: "#2B2B2B",
-                    font: {
-                      color: "#f5f2f2",
-                    },
-                    newshape: {
-                      line: {
-                        color: "#FFFFFF",
-                      },
-                    },
-                  }}
-                /> */}
-            
-                <Typography color="white">Temp Text</Typography>
-              </div>
-            </Item>
-          </div>
-        </Grid>
-        <Grid item xs={6}>
           <Item>
-            <Typography color="white">Astro Bit</Typography>
-            {/* <Plot
-              data={[
-                {
-                  x: [1, 2, 3],
-                  y: [2, 6, 3],
-                  type: "scatter",
-                  mode: "lines+markers",
-                  marker: { color: "red" },
-                },
-                { type: "bar", x: [1, 2, 3], y: [2, 5, 3] },
-              ]}
-              layout={{
-                width: "90%",
-                height: "500px",
-                title: "A Fancy Plot",
-                paper_bgcolor: "#2B2B2B",
-                plot_bgcolor: "#2B2B2B",
-                font: {
-                  color: "#f5f2f2",
-                },
-                newshape: {
-                  line: {
-                    color: "#FFFFFF",
-                  },
-                },
-              }}
-            /> */}
-           
-            <Typography color="white">Temp Text</Typography>
-          </Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>
-            <Typography color="white">Apollo</Typography>
-            {/* <Plot
-              data={[
-                {
-                  x: [1, 2, 3],
-                  y: [2, 6, 3],
-                  type: "scatter",
-                  mode: "lines+markers",
-                  marker: { color: "red" },
-                },
-                { type: "bar", x: [1, 2, 3], y: [2, 5, 3] },
-              ]}
-              layout={{
-                width: "90%",
-                height: "500px",
-                title: "A Fancy Plot",
-                paper_bgcolor: "#2B2B2B",
-                plot_bgcolor: "#2B2B2B",
-                font: {
-                  color: "#f5f2f2",
-                },
-                newshape: {
-                  line: {
-                    color: "#FFFFFF",
-                  },
-                },
-              }}
-            /> */}
-           
-            <Typography color="white">Temp Text</Typography>
+            <Typography color="white">Buzz Drilldrin</Typography>
+            <IntegratedDF />
+            {/* <Typography color="white">Temp Text</Typography> */}
           </Item>
         </Grid>
         <Grid item xs={6}>
           <Item>
             <Typography color="white">ChallengDriller</Typography>
-            {/* <Plot
-              data={[
-                {
-                  x: [1, 2, 3],
-                  y: [2, 6, 3],
-                  type: "scatter",
-                  mode: "lines+markers",
-                  marker: { color: "purple" },
-                },
-                { type: "bar", x: [1, 2, 3], y: [2, 5, 3] },
-              ]}
-              layout={{
-                width: "90%",
-                height: "500px",
-                title: "A Fancy Plot",
-                paper_bgcolor: "#2B2B2B",
-                plot_bgcolor: "#2B2B2B",
-                font: {
-                  color: "#f5f2f2",
-                },
-                newshape: {
-                  line: {
-                    color: "#FFFFFF",
-                  },
-                },
-              }}
-            /> */}
-            
-            <Typography color="white">Temp Text</Typography>
+            <InvertedDepthByRoP />
+            {/* <Typography color="white">Temp Text</Typography> */}
+          </Item>
+        </Grid>
+        <Grid item xs={6}>
+          <Item>
+            <Typography color="white">Buzz Drilldrin</Typography>
+            <DepthVRoPSmoothed />
+            {/* <Typography color="white">Temp Text</Typography> */}
+          </Item>
+        </Grid>
+        <Grid item xs={6}>
+          <Item>
+            <Typography color="white">ChallengDriller</Typography>
+            <InvertedDepthByRoP />
+            {/* <Typography color="white">Temp Text</Typography> */}
           </Item>
         </Grid>
       </Grid>
