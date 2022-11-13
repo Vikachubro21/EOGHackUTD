@@ -1,6 +1,7 @@
 import Plot from "react-plotly.js";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import { values } from "@fluentui/react";
 // let depth be an array with the input
 const calculateTime = (depth, rate, dist) => {
   const finalRate = rate[rate.length - 1];
@@ -103,21 +104,24 @@ function Cheapest() {
         y.push(JSON["RoP Estimate"][375 * i + j]);
       }
       datas.push({
-        x: x,
-        y: y,
+        x: x.map((value) => value),
+        y: y.map((value) => value),
         type: "scatter",
-        mode: "lines+markers",
+        mode: "markers",
+        name: JSON["Bit Drill Name"][375 * i],
         marker: { color: colors[i] },
       });
       x.length = 0;
+      y.length = 0;
     }
+    console.log(datas);
     return (
       <Plot
         data={datas}
         layout={{
           width: "90%",
           height: "500px",
-          title: "A Fancy Plot",
+          title: "Depth By RoP",
           paper_bgcolor: "#2B2B2B",
           plot_bgcolor: "#2B2B2B",
           font: {

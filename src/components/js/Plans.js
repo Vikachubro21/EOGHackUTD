@@ -88,12 +88,14 @@ function Plans() {
 
   const plans = (
     <Item elevation={75}>
+      <div>
       <Button variant="text" size="large" className="Button">
         Fastest
       </Button>
       <Button variant="text" size="large" className="Button">
         <Typography>Cheapest</Typography>
       </Button>
+      </div>
       <Cheapest />
     </Item>
   );
