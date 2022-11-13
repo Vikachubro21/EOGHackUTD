@@ -7,10 +7,10 @@ import {
   Stack,
   Button,
   Grid,
-  Paper
+  Paper,
 } from "@mui/material";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
-import logo from "../images/EOG_Resources_logo.svg";
+import logo from "../images/newplot_13.png";
 // NOTE TO SELF Make the buttons contain typography
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -18,6 +18,7 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: "center",
   color: theme.palette.text.secondary,
   lineHeight: "60px",
+  minHeight: "700px",
 }));
 const theme = createTheme({
   container: {
@@ -33,28 +34,34 @@ const theme = createTheme({
 });
 
 function Analysis() {
-   return (
-     
-       <div>
-            <Typography color="white">
-        {" "}
-        Graphs
-      </Typography>
-    <Grid container spacing={2}>
-  <Grid item xs={6}>
-    <Item>xs=6</Item>
-  </Grid>
-  <Grid item xs={6}>
-    <Item>xs=6</Item>
-  </Grid>
-  <Grid item xs={6}>
-    <Item>xs=6</Item>
-  </Grid>
-  <Grid item xs={6}>
-    <Item>xs=6</Item>
-  </Grid>
-</Grid>
+  return (
+    <div>
+      <Typography color="white">Graphs</Typography>
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
+          <div>
+            <Item>
+              <div>xs=6</div>
+              <Box
+                component="img"
+                sx={{ height: "500px", width: "90%" }}
+                src={logo}
+                alt="bruh"
+              ></Box>
+            </Item>
+          </div>
+        </Grid>
+        <Grid item xs={6}>
+          <Item>xs=6</Item>
+        </Grid>
+        <Grid item xs={6}>
+          <Item>xs=6</Item>
+        </Grid>
+        <Grid item xs={6}>
+          <Item>xs=6</Item>
+        </Grid>
+      </Grid>
     </div>
-   );
+  );
 }
 export default Analysis;
