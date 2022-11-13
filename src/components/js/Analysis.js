@@ -38,7 +38,6 @@ function Analysis() {
   return (
     <div>
       <Typography color="white">Drill Info</Typography>
-
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <div>
