@@ -26,7 +26,10 @@ function Plans() {
   const hardnessRef = useRef();
   var allRefs = [depthRef, pressureRef, hardnessRef];
   var allCorrect = [true, true, true];
-
+  async function pythonExec(pythonCode) {
+    let pyodide = await window.loadPyodide();
+    pyodide.runPython(pythonCode);
+  }
   function isNumeric(str) {
     if (typeof str !== "object") return false; // we only process strings!
     if (typeof str.current !== "object") return true;
@@ -91,7 +94,9 @@ function Plans() {
         Fastest
       </Button>
       <Button variant="text" size="large" className="Button">
-        <Typography>Cheapest</Typography>
+        <Typography onClick={pythonExec('print("Hello world!")')}>
+          Cheapest
+        </Typography>
       </Button>
     </Item>
   );

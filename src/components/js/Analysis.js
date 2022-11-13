@@ -41,7 +41,7 @@ function Analysis() {
         <Grid item xs={6}>
           <div>
             <Item>
-              <div>xs=6</div>
+              <div>Buzz Drilldrin</div>
               <Box
                 component="img"
                 sx={{ height: "500px", width: "90%" }}
@@ -52,13 +52,13 @@ function Analysis() {
           </div>
         </Grid>
         <Grid item xs={6}>
-          <Item>xs=6</Item>
+          <Item>Astro Bit</Item>
         </Grid>
         <Grid item xs={6}>
-          <Item>xs=6</Item>
+          <Item>Apollo</Item>
         </Grid>
         <Grid item xs={6}>
-          <Item>xs=6</Item>
+          <Item>ChallengDriller</Item>
         </Grid>
       </Grid>
     </div>
