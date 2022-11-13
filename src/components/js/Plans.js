@@ -73,7 +73,7 @@ function Plans() {
           <div className="inputField">
             <TextField
               id="outlined-basic"
-              label="Hardness"
+              label="Hook Load"
               error={!isNumeric(hardnessRef)}
               variant="outlined"
               inputRef={hardnessRef}
